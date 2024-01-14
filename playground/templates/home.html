@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}Home - Flask{% endblock %}
+
+<style>
+    span:hover {
+    background-color: white;
+    color: black;
+    }
+</style>
+
+{% block body %}
+<div class="container text-center">
+    <br><br>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body" style="padding: 2rem;background-image: url(https://img.freepik.com/free-vector/abstract-light-gray-geometric-polygonal-background_1035-18010.jpg);">
+                    <h5 class="card-title">GPT-4</h5>
+                    <strong><p class="card-text">A set of models that improve on GPT-3.5 and can understand and generate natural language and code.</p></strong>
+                    <br>
+                    <a href="#" class="btn btn-primary">Try model</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body" style="padding: 2rem; background-image: url(https://img.freepik.com/premium-vector/abstract-polygonal-background_147902-461.jpg);">
+                    <h5 class="card-title">GPT-4 TURBO</h5>
+                    <strong><p class="card-text">GPT-4 Turbo can solve difficult problems with greater accuracy than any of OpenAI's previous models.</p></strong>
+                    <br>
+                    <a href="{{url_for('gpt_page')}}" class="btn btn-primary">Try model</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body" style="padding: 2rem; background-image: url(https://wallpapers.com/images/hd/blue-geometric-92u38lrmv85s8otf.jpg);">
+                    <h5 class="card-title">DALLE-3</h5>
+                    <strong><p class="card-text">A series of models that can generate original images from text prompts that the user provides.</p></strong>
+                    <br>
+                    <a href="{{url_for('dalle_page')}}" class="btn btn-primary">Try model</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

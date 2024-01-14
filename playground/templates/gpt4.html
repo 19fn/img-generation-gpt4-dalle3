@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}GPT4 - Flask{% endblock %}
+
+<style>
+    span:hover {
+    background-color: white;
+    color: black;
+    }
+</style>
+
+{% block body %}
+<div class="container-fluid">
+    <!-- Chatbot response -->
+    <div class="row" style="padding: 5%;">
+        <div class="col"></div>
+        <div class="col-12"> <!-- Adjusting column sizes -->
+            {% if response %}
+                <p style="font-size: 2rem; color: white; text-align: center;"><span class="glyphicon glyphicon-eye-open"></span>{{ response }}</p>
+            {% else %}
+                <p style="font-size: 2rem; color: white; text-align: center;"><i class="bi bi-brilliance"></i> <br> How can I help you today?</p>
+            {% endif %}
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <div class="row" style="padding: 4%;">
+        <div class="col"></div>
+        <div class="col-8"> 
+            <form method="POST">
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        <textarea class="form-control" id="content" name="content" rows="1" placeholder="Message to the AI"></textarea>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-success"><i class="bi bi-arrow-up"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
