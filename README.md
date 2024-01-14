@@ -14,7 +14,7 @@ An interactive sandbox providing a hands-on experience with the most recent Open
 
 - Python (version 3.9.6)
 - Flask (version 3.0.0)
-- Azure OpenAI Key and endpoint
+- Azure OpenAI key and endpoint
 
 ### Installation
 
