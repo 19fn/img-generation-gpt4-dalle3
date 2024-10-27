@@ -96,4 +96,4 @@ Use GPT-4 to create prompts for generating unique images using DALL-E 3.
 By default, FastAPI runs on `localhost` with port `8000`.
 
 Open the app in your browser:  
-[http://127.0.0.1:8000](http://127.0.0.1:8000)
+[http://127.0.0.1:8000/prompter](http://127.0.0.1:8000/prompter)
