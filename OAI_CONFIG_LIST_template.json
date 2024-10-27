@@ -1,9 +1,0 @@
-[
-    {
-      "model": "gpt-4o-mini",
-      "api_type": "azure",
-      "api_key": "API_KEY",
-      "base_url": "https://RESOURCE_NAME.openai.azure.com",
-      "api_version": "2024-02-01"
-    }
-  ]
