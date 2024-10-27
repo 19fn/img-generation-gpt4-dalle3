@@ -131,3 +131,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 creds.conf
+
+# Config Files
+OAI_CONFIG_LIST.json
