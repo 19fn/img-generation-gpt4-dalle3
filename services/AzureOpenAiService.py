@@ -23,7 +23,8 @@ class AzureOpenAiService:
         try:
             response = self.client.chat.completions.create(
                 model="gpt-4o-mini",  # Set model to your deployment name
-                messages=messages
+                messages=messages,
+                temperature=0.4
             )
             return response.choices[0].message.content
         except Exception as e:
@@ -35,7 +36,9 @@ class AzureOpenAiService:
             response = self.client.images.generate(
                 model="dall-e-3",  # Set model to your deployment name
                 prompt=prompt,
-                n=1
+                n=1,
+                style="natural",
+                response_format="b64_json"
             )
             return response
         except Exception as e:
