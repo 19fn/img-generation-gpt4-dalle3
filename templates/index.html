@@ -1,148 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PrompterIMG - Image Generator</title>
+        <!-- Bootstrap CSS CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                background-color: #f8f9fa;
+                font-family: 'Roboto', sans-serif;
+            }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrompterIMG - Image Generator</title>
-    <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Roboto', sans-serif;
-        }
+            .hero-section {
+                background-color: #0dca46;
+                color: white;
+                padding: 2rem 0;
+                text-align: center;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            }
 
-        .hero-section {
-            background-color: #007bff;
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
+            .card-custom {
+                border: none;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
 
-        .card-custom {
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+            .btn-custom {
+                background-color: #0dca46;
+                border-color: #0dca46;
+                color: white;
+                transition: all 0.3s;
+            }
 
-        .btn-custom {
-            background-color: #007bff;
-            border-color: #007bff;
-            color: white;
-            transition: all 0.3s;
-        }
+            .btn-custom:hover {
+                background-color: #6ef16c;
+                border-color: #6ef16c;
+            }
 
-        .btn-custom:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
+            .image-container {
+                display: flex;
+                justify-content: center; /* Center the image horizontally */
+                margin-bottom: 1rem; /* Add some spacing below the image */
+            }
 
-        .image-container {
-            display: flex;
-            justify-content: center; /* Center the image horizontally */
-            margin-bottom: 1rem; /* Add some spacing below the image */
-        }
+            #generatedImage {
+                max-width: 100%;
+                height: auto;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                display: none; /* Hide the image initially */
+                width: 500px; /* Set a fixed width for the image */
+                height: 400px; /* Set a fixed height for the image */
+            }
 
-        #generatedImage {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: none; /* Hide the image initially */
-            width: 500px; /* Set a fixed width for the image */
-            height: 400px; /* Set a fixed height for the image */
-        }
+            #loadingSpinner {
+                display: none;
+            }
+        </style>
+    </head>
 
-        #loadingSpinner {
-            display: none;
-        }
-    </style>
-</head>
+    <body>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 style="font-weight: 400;">Welcome to PrompterIMG</h1>
+            <p>Generate stunning AI-powered images from prompts</p>
+        </section>
 
-<body>
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <h1 style="font-weight: 400;">Welcome to PrompterIMG</h1>
-        <p>Generate stunning AI-powered images from prompts</p>
-    </section>
+        <!-- Main Content -->
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card card-custom p-4">
+                        <h4 class="mb-4 text-center">Transform AI-Generated Prompts into Unique Visuals</h4>
 
-    <!-- Main Content -->
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-custom p-4">
-                    <h4 class="mb-4 text-center">Transform AI-Generated Prompts into Unique Visuals</h4>
+                        <!-- Image Section -->
+                        <div class="image-container">
+                            <img id="generatedImage" class="img-fluid" alt="Generated AI Image" />
+                        </div>
 
-                    <!-- Image Section -->
-                    <div class="image-container">
-                        <img id="generatedImage" class="img-fluid" alt="Generated AI Image" />
+                        <!-- Prompt Textarea -->
+                        <div class="mb-3">
+                            <label for="inputText" class="form-label">Generated Prompt</label>
+                            <textarea class="form-control" id="inputText" rows="4" placeholder="Your prompt will appear here..." readonly></textarea>
+                        </div>
+
+                        <!-- Generate Button -->
+                        <div class="d-grid">
+                            <button id="promptButton" class="btn btn-custom btn-lg">
+                                <span id="buttonText">Go Prompt</span>
+                                <span id="loadingSpinner" class="spinner-border spinner-border-sm ms-2" role="status"></span>
+                            </button>
+                        </div>
+
+                        <!-- Error Message -->
+                        <p id="result" class="text-danger text-center mt-3"></p>
                     </div>
-
-                    <!-- Prompt Textarea -->
-                    <div class="mb-3">
-                        <label for="inputText" class="form-label">Generated Prompt</label>
-                        <textarea class="form-control" id="inputText" rows="4" placeholder="Your prompt will appear here..." readonly></textarea>
-                    </div>
-
-                    <!-- Generate Button -->
-                    <div class="d-grid">
-                        <button id="promptButton" class="btn btn-custom btn-lg">
-                            <span id="buttonText">Go Prompt</span>
-                            <span id="loadingSpinner" class="spinner-border spinner-border-sm ms-2" role="status"></span>
-                        </button>
-                    </div>
-
-                    <!-- Error Message -->
-                    <p id="result" class="text-danger text-center mt-3"></p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer class="text-center mt-5 mb-3">
-        <p class="text-muted">&copy; 2024 PrompterIMG. All rights reserved.</p>
-    </footer>
+        <!-- Footer -->
+        <footer class="text-center mt-5 mb-3">
+            <p class="text-muted">&copy; 2024 PrompterIMG. All rights reserved.</p>
+        </footer>
 
-    <!-- Bootstrap JS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap JS CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script -->
-    <script>
-        document.getElementById("promptButton").addEventListener("click", function () {
-            const loadingSpinner = document.getElementById("loadingSpinner");
-            const buttonText = document.getElementById("buttonText");
+        <!-- Script -->
+        <script>
+            document.getElementById("promptButton").addEventListener("click", function () {
+                const loadingSpinner = document.getElementById("loadingSpinner");
+                const buttonText = document.getElementById("buttonText");
 
-            // Show loading spinner and hide button text
-            loadingSpinner.style.display = "inline-block";
-            buttonText.style.display = "none";
+                // Show loading spinner and hide button text
+                loadingSpinner.style.display = "inline-block";
+                buttonText.style.display = "none";
 
-            fetch("/generate-prompt", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
+                // Step 1: Fetch the generated prompt
+                fetch("/generate-prompt", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error("Network response was not ok");
+                        throw new Error("Failed to fetch the prompt");
                     }
                     return response.json();
                 })
                 .then(data => {
-                    // Update the textarea with the server's response
-                    document.getElementById("inputText").value = data.message;
+                    // Step 2: Update the textarea with the generated prompt
+                    const prompt = data.prompt;
+                    document.getElementById("inputText").value = prompt;
 
-                    // If image_url is present, update the image src and display it
-                    if (data.image_url) {
-                        const imgElement = document.getElementById("generatedImage");
-                        imgElement.src = data.image_url;
-                        imgElement.style.display = "block"; // Show the image
+                    // Step 3: Use the generated prompt to fetch the image
+                    return fetch("/generate-image", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ prompt: prompt })
+                    });
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Failed to generate the image");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Step 4: Display the image if image_url is present
+                    const imageUrl = data.image_url;
+                    const imgElement = document.getElementById("generatedImage");
+                    if (imageUrl) {
+                        imgElement.src = `data:image/png;base64,${imageUrl}`;
+                        imgElement.style.display = "block";
                     } else {
-                        document.getElementById("generatedImage").style.display = "none"; // Hide the image if no image_url
+                        imgElement.style.display = "none";
                     }
 
                     document.getElementById("result").textContent = ""; // Clear result paragraph
@@ -156,8 +174,7 @@
                     loadingSpinner.style.display = "none";
                     buttonText.style.display = "inline";
                 });
-        });
-    </script>
-</body>
-
+            });
+        </script>
+    </body>
 </html>
