@@ -1,59 +1,99 @@
-# Azure OpenAI Playground
+# Prompter2iMG
 
-An interactive sandbox providing a hands-on experience with the most recent OpenAI models.
+Use GPT-4 to create prompts for generating unique images using DALL-E 3.
 
-## Features
+## OpenAI's Models
 
-- GPT-4
-- GPT-4 TURBO
-- DALLE-3
+- GPT-4o-mini
+- DALL-E 3
 
 ## Getting Started
 
 ### Prerequisites
 
-- Python (version 3.9.6)
-- Flask (version 3.0.0)
+- Python (version 3.9.6 or above)
 - Azure OpenAI key and endpoint
 
-### Installation
+### How to Run It Locally
 
-1. Clone the repository:
+1. **Set Up Python Virtual Environment**  
+   First, create a Python 3 virtual environment:
 
-    ```bash
-    git clone https://github.com/19fn/openai-playground.git
-    ```
+   ```bash
+   python3 -m venv venv
+   ```
 
-2. Navigate to the project directory:
+2. **Activate the Virtual Environment**
 
-    ```bash
-    cd openai-playground
-    ```
+   - On macOS/Linux:
 
-3. Install the required dependencies:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## Usage
-
-1. Set up environment variables.
      ```bash
-      # Azure OpenAI key
-      export AZURE_OPENAI_KEY="replace-with-openai-key"
-     
-      # Azure OpenAI endpoint
-      export AZURE_OPENAI_ENDPOINT="replace-with-openai-endpoint"
-
-      # Flask secret key
-      export FLASK_SECRET_KEY="replace-with-random-secret-key"
+     source venv/bin/activate
      ```
 
-2. Run the Flask app:
+3. **Install Dependencies**  
+   With the virtual environment activated, install the necessary dependencies:
 
-    ```bash
-    flask run
-    ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-3. Open your web browser and navigate to `http://127.0.0.1:5000` to view the app.
+4. **Check Dependencies (Optional)**  
+   You can check the installed dependencies using:
+
+   ```bash
+   pip freeze  
+   ```
+
+### Configure Azure OpenAI
+
+5. **Set Azure OpenAI Environment Variables**  
+   You need to export the Azure OpenAI environment variables:
+
+   - Set the base API endpoint for Azure OpenAI:
+
+     ```bash
+     export AZURE_OPENAI_ENDPOINT=https://RESOURCE_NAME.openai.azure.com/
+     ```
+
+   - Set the Azure OpenAI API key:
+
+     ```bash
+     export AZURE_OPENAI_API_KEY=REPLACE_WITH_API_KEY
+     ```
+
+### Run the Project
+
+6. **Run the Project with Uvicorn**  
+   To run the FastAPI application:
+
+   ```bash
+   uvicorn main:app
+   ```
+
+7. **Run on a Specific Host**  
+   To specify the host:
+
+   ```bash
+   uvicorn main:app --host 127.0.0.1
+   ```
+
+8. **Run on a Specific Port**  
+   To specify the port:
+
+   ```bash
+   uvicorn main:app --port 5000
+   ```
+
+9. **Run on Both Custom Host and Port**
+
+   ```bash
+   uvicorn main:app --host=0.0.0.0 --port=5000
+   ```
+
+### Default Behavior
+
+By default, FastAPI runs on `localhost` with port `8000`.
+
+Open the app in your browser:  
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
